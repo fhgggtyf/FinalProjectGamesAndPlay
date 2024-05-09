@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DamageReceiver : CoreComponent, IDamageable
 {
-    [SerializeField] private GameObject damageParticles;
+    //[SerializeField] private GameObject damageParticles;
 
     /*
      * Modifiers allows us to perform some custom logic on our DamageData before we apply it here. An example where this is being used is by the Block weapon component.
@@ -14,8 +15,11 @@ public class DamageReceiver : CoreComponent, IDamageable
     public Modifiers<Modifier<DamageData>, DamageData> Modifiers { get; } = new();
 
     private Stats stats;
-    private ParticleManager particleManager;
+    //private ParticleManager particleManager;
 
+    public GameObject HealthBar;
+
+    public event Action OnDamaged;
 
     public void Damage(DamageData data)
     {
@@ -31,8 +35,15 @@ public class DamageReceiver : CoreComponent, IDamageable
             return;
         }
 
+        OnDamaged?.Invoke();
         stats.Health.Decrease(data.Amount);
-        particleManager.StartWithRandomRotation(damageParticles);
+        stats.healthInterface.AddToCurrentHealth(-data.Amount);
+
+        if (stats.CompareTag("Player"))
+        {
+            stats.data.health -= (int)data.Amount;
+        }
+        //particleManager.StartWithRandomRotation(damageParticles);
     }
 
     protected override void Awake()
@@ -40,6 +51,6 @@ public class DamageReceiver : CoreComponent, IDamageable
         base.Awake();
 
         stats = core.GetCoreComponent<Stats>();
-        particleManager = core.GetCoreComponent<ParticleManager>();
+        //particleManager = core.GetCoreComponent<ParticleManager>();
     }
 }

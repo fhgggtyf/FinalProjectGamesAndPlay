@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerBaseState : IBaseState
+public abstract class PlayerBaseState : IBaseState<PlayerBaseState>
 {
-    private Core _core;
+    protected Core _core;
 
     protected int xInput;
     protected int yInput;
@@ -13,6 +13,8 @@ public abstract class PlayerBaseState : IBaseState
     protected bool isGrounded;
     protected bool isTouchingWall;
     protected bool isTouchingLedge;
+
+    protected bool isAttacking;
 
     PlayerBaseState _currentSubState;
     PlayerBaseState _currentSuperState;
@@ -64,7 +66,6 @@ public abstract class PlayerBaseState : IBaseState
     {
         DoChecks();
         InitializeSubstate();
-        Player.Anim.SetBool(_animBoolName, true);
         startTime = Time.time;
         isAnimationFinished = false;
         isExitingState = false;
@@ -76,7 +77,6 @@ public abstract class PlayerBaseState : IBaseState
     }
     public virtual void ExitState()
     {
-        Player.Anim.SetBool(_animBoolName, false);
         isExitingState = true;
     }
     public abstract void InitializeSubstate();
@@ -92,6 +92,8 @@ public abstract class PlayerBaseState : IBaseState
             isTouchingLedge = CollisionSenses.LedgeHorizontal;
             isTouchingCeiling = CollisionSenses.Ceiling;
         }
+
+        isAttacking = Player.InputHandler.AttackInput;
     }
 
     public virtual void AnimationTrigger() { }

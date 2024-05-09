@@ -6,7 +6,7 @@ public class Stat
 {
     public event Action OnCurrentValueZero;
 
-    [field: SerializeField] public float MaxValue { get; private set; }
+    [field: SerializeField] public float MaxValue { get; set; }
 
     public float CurrentValue
     {
@@ -25,8 +25,16 @@ public class Stat
     private float currentValue;
 
     public void Init() => CurrentValue = MaxValue;
+    public void Init(int i) => CurrentValue = i;
 
-    public void Increase(float amount) => CurrentValue += amount;
+    public void Increase(float amount)
+    {
+        CurrentValue += amount;
+    }
 
-    public void Decrease(float amount) => CurrentValue -= amount;
+    public void Decrease(float amount)
+    {
+        CurrentValue -= amount;
+    }
+
 }

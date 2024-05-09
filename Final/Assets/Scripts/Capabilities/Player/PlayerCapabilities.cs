@@ -11,10 +11,13 @@ public class PlayerCapabilities : ICapabilities
 
     protected Player player;
 
+    protected string _animBoolName;
+
     public PlayerCapabilities(Player player, string animBoolName)
     {
         this.player = player;
         core = player.Core;
+        _animBoolName = animBoolName;
     }
 
     public virtual void CapabilityAction() { }

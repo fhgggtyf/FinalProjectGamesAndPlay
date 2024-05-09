@@ -8,6 +8,8 @@ public class CameraFollowObject : MonoBehaviour
     [SerializeField] private float _flipRotationTime = 0.5f;
     [SerializeField] private Player _ctx;
 
+    [SerializeField] private Vector3 _offset;
+
     private Movement movement;
 
     protected Movement Movement
@@ -26,7 +28,7 @@ public class CameraFollowObject : MonoBehaviour
     void Update()
     {
         _isFacingRight = Movement.FacingDirection;
-        transform.position = _playerTransform.position; 
+        transform.position = _playerTransform.position + _offset; 
     }
 
     public void CallTurn()

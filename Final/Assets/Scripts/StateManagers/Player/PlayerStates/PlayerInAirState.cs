@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class PlayerInAirState : PlayerBaseState
     public PlayerInAirState(PlayerStateMachine currentContext, string animBoolName) : base(currentContext, animBoolName)
     {
         IsRootState = true;
+        InitializeSubstate();
     }
 
     public override void DoChecks()
@@ -45,6 +47,10 @@ public class PlayerInAirState : PlayerBaseState
         {
             SetSubState(_ctx.Factory.Idle());
         }
+        if (isAttacking)
+        {
+            SetSubState(_ctx.Factory.Attack());
+        }
     }
 
     public override void LogicUpdate()
@@ -57,12 +63,14 @@ public class PlayerInAirState : PlayerBaseState
         {
             jumpCount = 0;
             canDash = true;
+            Player.AnimationController.SetAnim("Land");
             _ctx.SwitchState(this, _ctx.Factory.Grounded());
         }
 
         if (jumpInput && jumpCount < Player.PlayerData.MaxJumps)
         {
             jumpCount++;
+            Player.AnimationController.SetAnim("FrontFlip");
             Player.capabilities[(int)Capability.jump].CapabilityAction();
         }
 
@@ -72,17 +80,17 @@ public class PlayerInAirState : PlayerBaseState
             Player.capabilities[(int)Capability.dash].CapabilityAction();
         }
 
-        if (xInput != 0 && CurrentSubState is not PlayerMoveState)
-        {
-            SetSubState(_ctx.Factory.Walk());
-        }
+        //if (xInput != 0 && CurrentSubState is not PlayerMoveState)
+        //{
+        //    SetSubState(_ctx.Factory.Walk());
+        //}
 
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-    }
 
+    }
 
 }

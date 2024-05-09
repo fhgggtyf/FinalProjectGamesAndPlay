@@ -51,10 +51,15 @@ public class PlayerStateFactory : StateFactory<PlayerStateMachine, PlayerBaseSta
     //{
     //    return new PlayerClimbState(_context);
     //}
-    //public PlayerBaseState Attack()
-    //{
-    //    return new PlayerAttackState(_context);
-    //}
+    public PlayerBaseState Attack()
+    {
+        return new PlayerAttackState(_context, "Attack");
+    }
+
+    public PlayerBaseState Damaged()
+    {
+        return new PlayerDamagedState(_context, "Damage");
+    }
 
 
 }

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   movementVelocity: 10
-  MaxSpeed: 10
+  MaxSpeed: 8
   acceleration: 70
-  JumpHeight: 4
+  JumpHeight: 10
   MaxJumps: 3
   wallJumpVelocity: 20
   wallJumpTime: 0.4

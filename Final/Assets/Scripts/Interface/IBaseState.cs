@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IBaseState
+public interface IBaseState<T> where T : IBaseState<T>
 {
     public abstract void EnterState();
     public abstract void LogicUpdate();
@@ -11,6 +11,6 @@ public interface IBaseState
     public abstract void DoChecks();
     public abstract void AnimationTrigger();
     public abstract void AnimationFinishTrigger();
-    public abstract void SetPrevState(PlayerBaseState prevState);
+    public abstract void SetPrevState(T prevState);
 
 }

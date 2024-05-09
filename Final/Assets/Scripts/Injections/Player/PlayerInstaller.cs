@@ -18,8 +18,11 @@ public class PlayerInstaller : MonoInstaller<PlayerInstaller>
         Container.Bind<Ground>().FromComponentInHierarchy().WhenInjectedInto<Player>();
         Container.Bind<Stats>().FromResolveGetter<Core>(core => core.GetCoreComponent<Stats>()).WhenInjectedInto<Player>();
         Container.Bind<InteractableDetector>().FromResolveGetter<Core>(core => core.GetCoreComponent<InteractableDetector>()).WhenInjectedInto<Player>();
+        Container.Bind<DamageReceiver>().FromResolveGetter<Core>(core => core.GetCoreComponent<DamageReceiver>()).WhenInjectedInto<Player>();
 
         Container.Bind<List<PlayerCapabilities>>().AsSingle();
+        Container.Bind<AnimationController>().AsTransient().WhenInjectedInto<Player>();
+
 
         Container.Bind<Weapon>().WithId("Primary").FromComponentInHierarchy().WhenInjectedInto<Player>();
         Container.Bind<Weapon>().WithId("Secondary").FromComponentInHierarchy().WhenInjectedInto<Player>();

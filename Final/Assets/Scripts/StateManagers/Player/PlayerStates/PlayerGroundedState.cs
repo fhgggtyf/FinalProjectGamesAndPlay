@@ -8,6 +8,7 @@ public class PlayerGroundedState : PlayerBaseState
     public PlayerGroundedState(PlayerStateMachine currentContext, string animBoolName) : base(currentContext, animBoolName)
     {
         IsRootState = true;
+        InitializeSubstate();
     }
 
     public override void DoChecks()
@@ -39,10 +40,10 @@ public class PlayerGroundedState : PlayerBaseState
             Player.capabilities[(int)Capability.jump].CapabilityAction();
             _ctx.SwitchState(this, _ctx.Factory.InAir());
         }
-        if (xInput != 0 && CurrentSubState is not PlayerMoveState)
-        {
-            SetSubState(_ctx.Factory.Walk());
-        }
+        //if (xInput != 0 && CurrentSubState is not PlayerMoveState)
+        //{
+        //    SetSubState(_ctx.Factory.Walk());
+        //}
     }
 
     public override void PhysicsUpdate()
@@ -53,7 +54,10 @@ public class PlayerGroundedState : PlayerBaseState
     public override void InitializeSubstate()
     {
         DoChecks();
-
+        if (isAttacking)
+        {
+            SetSubState(_ctx.Factory.Attack());
+        }
         if (xInput != 0)
         {
             SetSubState(_ctx.Factory.Walk());
@@ -62,6 +66,7 @@ public class PlayerGroundedState : PlayerBaseState
         {
             SetSubState(_ctx.Factory.Idle());
         }
+
     }
 
 

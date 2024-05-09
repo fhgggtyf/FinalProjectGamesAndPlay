@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - ParticleContainer
+  - HealthBarImage
+  - Enemy
+  - Clone
+  - DestructableProjectile
+  - PlayerBase
   layers:
   - Default
   - TransparentFX
@@ -12,10 +17,10 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Camera
+  - Enemy
+  - Player
+  - Obstacle
   - 
   - 
   - 

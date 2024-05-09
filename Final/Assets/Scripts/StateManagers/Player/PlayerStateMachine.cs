@@ -12,11 +12,14 @@ public class PlayerStateMachine : IStateMachine<PlayerBaseState>
 
     Player _player;
 
+    int _attackCounter;
+
     public PlayerBaseState CurrentState { get; private set; }
     public Core Core { get => _core; set => _core = value; }
     public Player Player { get => _player; set => _player = value; }
     public PlayerData Data { get => _data; set => _data = value; }
     public PlayerStateFactory Factory { get => _factory; set => _factory = value; }
+    public int AttackCounter { get => _attackCounter; set => _attackCounter = value; }
 
     public PlayerStateMachine(Player player, PlayerData data, Core core)
     {
@@ -24,6 +27,7 @@ public class PlayerStateMachine : IStateMachine<PlayerBaseState>
         Data = data;
         Core = core;
         Player = player;
+        _attackCounter = 0;
 
         SetCurrentState(Factory.Grounded());
         CurrentState.EnterState();

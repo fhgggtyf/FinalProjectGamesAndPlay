@@ -12,6 +12,8 @@ public class Movement : CoreComponent
 
     public Vector2 CurrentVelocity { get; private set; }
 
+    public CameraFollowObject CameraFollowObject;
+
     private Vector2 workspace;
 
     protected override void Awake()
@@ -83,6 +85,8 @@ public class Movement : CoreComponent
     {
         FacingDirection *= -1;
         RB.transform.Rotate(0.0f, 180.0f, 0.0f);
+        CameraFollowObject.CallTurn();
+
     }
 
     public Vector2 FindRelativePoint(Vector2 offset)

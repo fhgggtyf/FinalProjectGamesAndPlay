@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class StateFactory<TStateMachine, TBaseState>
     where TStateMachine : IStateMachine<TBaseState>
-    where TBaseState : IBaseState
+    where TBaseState : IBaseState<TBaseState>
 {
     protected TStateMachine _context;
 

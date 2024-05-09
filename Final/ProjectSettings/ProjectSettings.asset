@@ -593,7 +593,8 @@ PlayerSettings:
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Standalone: MOREMOUNTAINS_INTERFACE;MOREMOUNTAINS_TOPDOWNENGINE;MOREMOUNTAINS_INVENTORYENGINE
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -698,7 +699,7 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 1
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: 504a3081-4027-4b84-a6ee-acdbf2564ecc
   framebufferDepthMemorylessMode: 0
