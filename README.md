@@ -19,11 +19,11 @@ Stage 1:
 Nothing special
 
 Stage 2:
-Nothing special (attacks can damage enemies and destroy projectiles)
+Nothing special (attacks can damage enemies and destroy projectiles)\n
 Destroy enemies and projectiles to obtain points
 
 Stage 3:
-After touching the ring, QE changes the camera's focus
+After touching the ring, QE changes the camera's focus \n
 Get to the top as fast as possible
 
 Stage 4:
