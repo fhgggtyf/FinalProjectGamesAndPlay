@@ -4,6 +4,8 @@ Presentation: https://www.canva.com/design/DAGEeBRAOz4/TxAA3kxeJEvTbnQzyojWOg/ed
 
 Video demo: https://drive.google.com/drive/folders/1zbgXC9n6ZkRBZKY_Dd2IMNtgkqPkOK3c?usp=sharing
 
+Unity Version: 2022.3.9f1 LTS
+
 
 Instructions:
 
